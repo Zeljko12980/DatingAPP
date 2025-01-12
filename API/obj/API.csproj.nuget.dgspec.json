@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ikano\\DatingAPP\\api\\API.csproj": {}
+    "C:\\Users\\ikano\\OneDrive - Faculty of Electrical Engineering, University of East Sarajevo\\Documents\\Desktop\\DatingAPP\\DatingAPP\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ikano\\DatingAPP\\api\\API.csproj": {
+    "C:\\Users\\ikano\\OneDrive - Faculty of Electrical Engineering, University of East Sarajevo\\Documents\\Desktop\\DatingAPP\\DatingAPP\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ikano\\DatingAPP\\api\\API.csproj",
+        "projectUniqueName": "C:\\Users\\ikano\\OneDrive - Faculty of Electrical Engineering, University of East Sarajevo\\Documents\\Desktop\\DatingAPP\\DatingAPP\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\ikano\\DatingAPP\\api\\API.csproj",
+        "projectPath": "C:\\Users\\ikano\\OneDrive - Faculty of Electrical Engineering, University of East Sarajevo\\Documents\\Desktop\\DatingAPP\\DatingAPP\\API\\API.csproj",
         "packagesPath": "C:\\Users\\ikano\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ikano\\DatingAPP\\api\\obj\\",
+        "outputPath": "C:\\Users\\ikano\\OneDrive - Faculty of Electrical Engineering, University of East Sarajevo\\Documents\\Desktop\\DatingAPP\\DatingAPP\\API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -39,7 +39,13 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -79,6 +85,24 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.10, 8.0.10]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[8.0.10, 8.0.10]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.10, 8.0.10]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[8.0.10, 8.0.10]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -87,7 +111,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.107/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100-rc.2.24474.11/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
