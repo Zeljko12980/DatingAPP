@@ -8,21 +8,30 @@ namespace API.Services.User
 {
     public class UserService : IUserService
     {
-        private readonly DataContext _context;
+        /*  private readonly DataContext _context;
 
-        public UserService(DataContext context)
+          public UserService(DataContext context)
+          {
+              _context = context;
+          }
+
+          public async Task<AppUser> GetUserByIdAsync(int id)
+          {
+              return await _context.AppUsers.FirstOrDefaultAsync(u => u.Id == id);
+          }
+
+          public async Task<List<AppUser>> GetUsersAsync()
+          {
+              return await _context.AppUsers.ToListAsync();
+          }*/
+        public Task<AppUser> GetUserByIdAsync(int id)
         {
-            _context = context;
+            throw new NotImplementedException();
         }
 
-        public async Task<AppUser> GetUserByIdAsync(int id)
+        public Task<List<AppUser>> GetUsersAsync()
         {
-            return await _context.AppUsers.FirstOrDefaultAsync(u => u.Id == id);
-        }
-
-        public async Task<List<AppUser>> GetUsersAsync()
-        {
-            return await _context.AppUsers.ToListAsync();
+            throw new NotImplementedException();
         }
     }
 }

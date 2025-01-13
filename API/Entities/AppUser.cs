@@ -1,11 +1,10 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 
 namespace API.Entities
 {
-    public class AppUser
+    public class AppUser:IdentityUser
     {
-        [Key]
-        public int Id { get; set; }
-           public string UserName { get; set; }
+       
     }
 }
