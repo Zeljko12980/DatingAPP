@@ -1,5 +1,6 @@
 using API.Data;
 using API.Entities;
+using API.Services.Destinacija;
 using API.Services.User;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,7 @@ builder.Services.AddIdentity<AppUser, IdentityRole>()
     .AddDefaultTokenProviders();
 
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IDestinacijaService, DestinacijaService>();
 builder.Services.AddControllers();
 builder.Services.AddCors();
 

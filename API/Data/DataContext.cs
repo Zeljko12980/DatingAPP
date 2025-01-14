@@ -12,5 +12,16 @@ namespace API.Data
         {
         }
 
+        public DbSet<Destinacija> Destinacije {get;set;}
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+             builder.Entity<Destinacija>()
+        .Property(d => d.Id)
+        .ValueGeneratedOnAdd();
+        }
+
     }
 }

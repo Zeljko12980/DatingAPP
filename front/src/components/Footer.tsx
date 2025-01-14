@@ -2,22 +2,32 @@
 import styled from "styled-components";
 import { BsLinkedin, BsFacebook } from "react-icons/bs";
 import { AiFillInstagram } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 export default function Footer() {
+  const navigate=useNavigate();
+
+  const handleNavigate = (target) => {
+    navigate("/"); // Navigate to the main page
+    setTimeout(() => {
+      // Timeout to allow page rendering before scrolling
+      document.getElementById(target)?.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+  };
   return (
     <FooterContainer>
-      <span>Copyright &copy; 2021 Travelo. All rights reserved</span>
+      <span>Copyright &copy; 2025 Travelo. All rights reserved</span>
       <ul className="links">
         <li>
-          <a href="#hero">Home</a>
+          <a onClick={() => handleNavigate("hero")} href="#hero">Home</a>
         </li>
         <li>
-          <a href="#services">About</a>
+          <a onClick={() => handleNavigate("services")} href="#services">About</a>
         </li>
         <li>
-          <a href="#recommend">Places</a>
+          <a onClick={() => handleNavigate("recommend")} href="#places">Places</a>
         </li>
         <li>
-          <a href="#testimonials">Testimonials</a>
+          <a onClick={() => handleNavigate("testimonials")} href="#testimonials">Testimonials</a>
         </li>
       </ul>
       <ul className="social__links">

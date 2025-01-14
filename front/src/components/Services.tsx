@@ -5,6 +5,7 @@ import service2 from "../assets/service2.png";
 import service3 from "../assets/service3.png";
 import service4 from "../assets/service4.png";
 
+
 export default function Services() {
   const data = [
     {
@@ -15,9 +16,9 @@ export default function Services() {
     },
     {
       icon: service2,
-      title: "Covid Safe",
+      title: "Romantic Getaway",
       subTitle:
-        "We have all the curated hotels that have all the precaution for a covid safe environment.",
+        "Escape to cozy, intimate retreats perfect for couples looking for a romantic experience.",
     },
     {
       icon: service3,
@@ -34,7 +35,7 @@ export default function Services() {
   ];
   return (
     <Section id="services">
-      {data.map((service, index) => {
+      {data.map((service) => {
         return (
           <div className="service">
             <div className="icon">

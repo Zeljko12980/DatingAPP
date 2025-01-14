@@ -1,4 +1,4 @@
-import React from "react";
+
 import styled from "styled-components";
 import avatarImage from "../assets/avatarImage.jpeg";
 export default function Testimonials() {

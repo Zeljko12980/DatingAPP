@@ -1,15 +1,31 @@
+
 import React, { useState } from "react";
 import styled from "styled-components";
 import logo from "../assets/logo.png";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { VscChromeClose } from "react-icons/vsc";
+import { useNavigate } from "react-router-dom";
 export default function Navbar() {
   const [navbarState, setNavbarState] = useState(false);
+  const navigate=useNavigate();
+
+ 
+
+  const handleNavigate1 = (target) => {
+    navigate("/"); // Navigate to the main page
+    setTimeout(() => {
+      // Timeout to allow page rendering before scrolling
+      document.getElementById(target)?.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+  };
+  const handleNavigate=()=>{
+    navigate('/login');
+  }
   return (
     <>
       <Nav>
         <div className="brand">
-          <div className="container">
+          <div className="container" onClick={()=>navigate("/")}>
             <img src={logo} alt="" />
             Travelo
           </div>
@@ -24,42 +40,48 @@ export default function Navbar() {
 
         <ul>
           <li>
-            <a href="#home">Home</a>
+          <a onClick={() => handleNavigate1("hero")} href="#hero">Home</a>
           </li>
           <li>
-            <a href="#services">About</a>
+            <a onClick={() => handleNavigate1("services")} href="#services">About</a>
           </li>
           <li>
-            <a href="#recommend">Places</a>
+            <a onClick={() => handleNavigate1("recommend")} href="#recommend">Places</a>
           </li>
           <li>
-            <a href="#testimonials">Testimonials</a>
+            <a onClick={() => handleNavigate1("testimonials")} href="#testimonials">Testimonials</a>
           </li>
         </ul>
-        <button>Connect</button>
+        <button onClick={handleNavigate}>Connect</button>
       </Nav>
       <ResponsiveNav state={navbarState}>
         <ul>
+        <li>
+            <a  onClick={() => navigate("/login")}>
+             Login
+            </a>
+          </li>
           <li>
-            <a href="#home" onClick={() => setNavbarState(false)}>
+            <a href="#home" onClick={() => navigate("/#home")}>
               Home
             </a>
           </li>
           <li>
-            <a href="#services" onClick={() => setNavbarState(false)}>
+            <a href="#services" onClick={() => navigate("/#services")}>
               About
             </a>
           </li>
           <li>
-            <a href="#recommend" onClick={() => setNavbarState(false)}>
+            <a href="#recommend" onClick={() => navigate("/#recommend")}>
               Places
             </a>
           </li>
           <li>
-            <a href="#testimonials" onClick={() => setNavbarState(false)}>
+            <a href="#testimonials" onClick={() => navigate("/#testimonials")}>
               Testimonials
             </a>
           </li>
+         
         </ul>
       </ResponsiveNav>
     </>
