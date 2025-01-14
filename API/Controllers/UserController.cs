@@ -1,4 +1,5 @@
 using API.Entities;
+using API.Services.Token;
 using API.Services.User;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -10,29 +11,39 @@ namespace API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IUserService _userService;
+          private readonly IUserService _userService;
+        private readonly ITokenService _tokenService;
+    public UserController(IUserService userService, ITokenService tokenService)
+    {
+        _userService = userService;
+        _tokenService=tokenService;
+    }
 
-        public UserController(IUserService userService)
+    [HttpPost("register")]
+    public async Task<IActionResult> Register(string username, string email, string password,string role)
+    {
+        var result = await _userService.RegisterWithRoleAsync(username, email, password,role);
+        if (result.Succeeded)
         {
-            _userService = userService;
+            return Ok("User registered successfully");
         }
 
-        [HttpGet]
-        public async Task<ActionResult<List<AppUser>>> GetAllUsers()
-        {
-            var users = await _userService.GetUsersAsync();
-            return Ok(users);
-        }
+        return BadRequest(result.Errors);
+    }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<AppUser>> GetUser(int id)
-        {
-            var user = await _userService.GetUserByIdAsync(id);
-            if (user == null)
-            {
-                return NotFound();
-            }
-            return Ok(user);
-        }
+    [HttpPost("login")]
+    public async Task<IActionResult> Login(string username, string password)
+    {
+       var user = await _userService.LoginAsync(username,password);
+    if (user == null )
+    {
+        return Unauthorized("Invalid credentials");
+    }
+
+   
+    var token =await _tokenService.GenerateJwtTokenAsync(user);
+
+    return Ok(new { Token = token });
+    }
     }
 }

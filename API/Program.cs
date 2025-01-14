@@ -1,9 +1,13 @@
+using System.Text;
 using API.Data;
 using API.Entities;
 using API.Services.Destinacija;
+using API.Services.Token;
 using API.Services.User;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,8 +24,50 @@ builder.Services.AddIdentity<AppUser, IdentityRole>()
     .AddEntityFrameworkStores<DataContext>()
     .AddDefaultTokenProviders();
 
+    builder.Services.Configure<IdentityOptions>(options =>
+{
+    options.Password.RequireDigit = false;
+    options.Password.RequiredLength = 6;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequireLowercase = false;
+});
+
+
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+            {
+                options.RequireHttpsMetadata = false;  // Set this true if you are using https
+                options.SaveToken = true;
+
+                // Make sure the following properties are properly set
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+
+                    // Set the correct issuer and audience
+                    ValidIssuer = builder.Configuration["Jwt:Issuer"],
+                    ValidAudience = builder.Configuration["Jwt:Audience"],
+
+                    // The key used to sign the token
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+                };
+            });
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminPolicy", policy => policy.RequireRole("Admin"));
+    options.AddPolicy("UserPolicy", policy => policy.RequireRole("User"));
+});
+
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IDestinacijaService, DestinacijaService>();
+builder.Services.AddScoped<ITokenService, TokenService>();
+
+
 builder.Services.AddControllers();
 builder.Services.AddCors();
 
@@ -44,4 +90,6 @@ app.UseCors(opt=>{
     .AllowAnyMethod();
     
 });
+  app.UseAuthentication();
+        app.UseAuthorization();
 app.Run();

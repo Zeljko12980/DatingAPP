@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import destinacijaReducer from './../redux/destinacijaSlice';
+import authReducer from "./../redux/authSlice"
 
 const store = configureStore({
   reducer: {
-    destinacije: destinacijaReducer, // Dodajemo destinacija reducer u store
+    destinacije: destinacijaReducer,
+    auth:authReducer // Dodajemo destinacija reducer u store
   },
 });
 

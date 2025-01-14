@@ -5,7 +5,9 @@ import logo from "../assets/logo.png";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { VscChromeClose } from "react-icons/vsc";
 import { useNavigate } from "react-router-dom";
+import { useAppSelector } from "../features/store/hooks";
 export default function Navbar() {
+  const isLogged=useAppSelector((state)=>state.auth.isLogged);
   const [navbarState, setNavbarState] = useState(false);
   const navigate=useNavigate();
 
@@ -52,7 +54,9 @@ export default function Navbar() {
             <a onClick={() => handleNavigate1("testimonials")} href="#testimonials">Testimonials</a>
           </li>
         </ul>
+        {!isLogged && (
         <button onClick={handleNavigate}>Connect</button>
+        )}
       </Nav>
       <ResponsiveNav state={navbarState}>
         <ul>
